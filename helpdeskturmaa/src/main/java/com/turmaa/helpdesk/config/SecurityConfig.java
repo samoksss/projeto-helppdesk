@@ -79,13 +79,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	@Bean
-	CorsConfigurationSource corsConfigurationSource() {
-		CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
-		configuration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "OPTIONS"));
-		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", configuration);
-		return source;
-	}
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        
+        // 1. Libera TODAS as origens (Frontend no Vercel, Localhost, Ngrok, etc)
+        configuration.setAllowedOrigins(Arrays.asList("*"));
+        
+        // 2. Libera TODOS os métodos HTTP necessários
+        configuration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "OPTIONS"));
+        
+        // 3. Libera TODOS os cabeçalhos (Isso é CRÍTICO para o Token JWT passar)
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        
+        // Aplica essa configuração para todas as rotas da API
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
 
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
