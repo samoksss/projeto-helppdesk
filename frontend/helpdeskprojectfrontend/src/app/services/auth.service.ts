@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { API_CONFIG } from '../config/api.config';
+import { environment } from '../../environments/environment.prod'; // <--- MUDOU AQUI
 import { Credenciais } from '../models/credenciais';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
@@ -16,7 +16,7 @@ export class AuthService {
 
   authenticate(creds: Credenciais): Observable<HttpResponse<any>> {
     return this.http.post(
-      `${API_CONFIG.baseUrl}/login`,
+      `${environment.apiUrl}/login`, // <--- USANDO ENVIRONMENT
       creds,
       { observe: 'response' }
     );
@@ -32,7 +32,6 @@ export class AuthService {
   isAuthenticated() {
     let token = localStorage.getItem('token');
     
-    // Verificação robusta: se o token não existe ou é a string "null"/"undefined"
     if (token != null && token !== 'null' && token !== 'undefined') {
       try {
         return !this.jwtService.isTokenExpired(token);

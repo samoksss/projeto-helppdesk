@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { API_CONFIG } from '../config/api.config';
+import { environment } from '../../environments/environment.prod'; // <--- MUDOU AQUI
 import { Tecnico } from '../models/tecnico';
 
 @Injectable({
@@ -12,23 +12,22 @@ export class TecnicoService {
   constructor(private http: HttpClient) { }
 
   findById(id: any): Observable<Tecnico> {
-    return this.http.get<Tecnico>(`${API_CONFIG.baseUrl}/tecnicos/${id}`);
+    return this.http.get<Tecnico>(`${environment.apiUrl}/tecnicos/${id}`);
   }
 
   findAll(): Observable<Tecnico[]> {
-    return this.http.get<Tecnico[]>(`${API_CONFIG.baseUrl}/tecnicos`);
+    return this.http.get<Tecnico[]>(`${environment.apiUrl}/tecnicos`);
   }
 
   create(tecnico: Tecnico): Observable<Tecnico> {
-    return this.http.post<Tecnico>(`${API_CONFIG.baseUrl}/tecnicos`, tecnico);
+    return this.http.post<Tecnico>(`${environment.apiUrl}/tecnicos`, tecnico);
   }
 
-  // AQUI ESTÁ A CORREÇÃO: O método deve aceitar 'id' e 'tecnico'
   update(id: any, tecnico: Tecnico): Observable<Tecnico> {
-    return this.http.put<Tecnico>(`${API_CONFIG.baseUrl}/tecnicos/${id}`, tecnico);
+    return this.http.put<Tecnico>(`${environment.apiUrl}/tecnicos/${id}`, tecnico);
   }
 
   delete(id: any): Observable<Tecnico> {
-    return this.http.delete<Tecnico>(`${API_CONFIG.baseUrl}/tecnicos/${id}`);
+    return this.http.delete<Tecnico>(`${environment.apiUrl}/tecnicos/${id}`);
   }
 }
