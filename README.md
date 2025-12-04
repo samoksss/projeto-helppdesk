@@ -1,4 +1,4 @@
-# 🛡️ Help Desk Premium - Sistema de Gestão de Chamados
+# 🛡️ Help Desk - Sistema de Gestão de Chamados
 
 ![Badge em Desenvolvimento](https://img.shields.io/badge/Status-Concluído-green)
 ![Angular](https://img.shields.io/badge/Frontend-Angular%2012-red)
