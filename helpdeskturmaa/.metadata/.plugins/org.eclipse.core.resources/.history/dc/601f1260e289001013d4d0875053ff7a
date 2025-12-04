@@ -1,0 +1,88 @@
+package com.turmaa.helpdesk.service;
+
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.turmaa.helpdesk.domain.Chamado;
+import com.turmaa.helpdesk.domain.Cliente;
+import com.turmaa.helpdesk.domain.Tecnico;
+import com.turmaa.helpdesk.domain.dtos.ChamadoDTO;
+import com.turmaa.helpdesk.domain.enums.Status;
+import com.turmaa.helpdesk.repositories.ChamadoRepository;
+import com.turmaa.helpdesk.service.exceptions.ObjectNotFoundException;
+
+@Service
+public class ChamadoService {
+
+    @Autowired
+    private ChamadoRepository chamadoRepository;
+    @Autowired
+    private TecnicoService tecnicoService;
+    @Autowired
+    private ClienteService clienteService;
+
+    public Chamado findById(Integer id) {
+        Optional<Chamado> obj = chamadoRepository.findById(id);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! ID: " + id));
+    }
+
+    public List<Chamado> findAll() {
+        return chamadoRepository.findAll();
+    }
+
+    public Chamado create(ChamadoDTO objDTO) {
+        objDTO.setId(null);
+        Chamado newObj = newChamado(objDTO);
+        return chamadoRepository.save(newObj);
+    }
+    
+    // NOVO MÉTODO: Atualiza um chamado
+    public Chamado update(Integer id, ChamadoDTO objDTO) {
+        objDTO.setId(id);
+        Chamado oldObj = findById(id);
+        // Atualiza a data de fechamento se o status for ENCEERRADO
+        if (oldObj.getStatus().getCodigo().equals(2)) { // Verifica se já está encerrado
+            throw new IllegalArgumentException("Chamado já encerrado. Não é possível alterar.");
+        }
+        oldObj = newChamado(objDTO);
+        oldObj.setId(id); // Garante que o ID do objeto é o do chamado que está sendo atualizado
+        
+        // Verifica se o status foi alterado para 'ENCERRADO'
+        if(oldObj.getStatus().getCodigo().equals(2)){
+            oldObj.setDataFechamento(LocalDate.now());
+        }
+        return chamadoRepository.save(oldObj);
+    }
+    
+    // NOVO MÉTODO: Deleta um chamado
+    public void delete(Integer id) {
+        Chamado obj = findById(id);
+        // Lógica de negócio: Se o chamado está aberto ou em andamento, não pode ser deletado.
+        if (!obj.getStatus().getCodigo().equals(2)) {
+            throw new IllegalArgumentException("Chamado não pode ser deletado, pois não está ENCERRADO.");
+        }
+        chamadoRepository.deleteById(id);
+    }
+    
+    private Chamado newChamado(ChamadoDTO objDTO) {
+        Tecnico tecnico = tecnicoService.findById(objDTO.getTecnicoId());
+        Cliente cliente = clienteService.findById(objDTO.getClienteId());
+        
+        Chamado chamado = new Chamado();
+        if(objDTO.getId() != null) {
+            chamado.setId(objDTO.getId());
+        }
+        chamado.setTecnico(tecnico);
+        chamado.setCliente(cliente);
+        chamado.setPrioridade(objDTO.getPrioridade());
+        chamado.setStatus(objDTO.getStatus());
+        chamado.setTitulo(objDTO.getTitulo());
+        chamado.setObservacoes(objDTO.getObservacoes());
+        
+        return chamado;
+    }
+}

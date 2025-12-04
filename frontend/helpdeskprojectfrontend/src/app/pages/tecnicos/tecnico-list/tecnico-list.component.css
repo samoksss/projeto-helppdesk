@@ -1,0 +1,93 @@
+/* 1. Ajuste do Card para Enquadramento Total */
+.list-card {
+  width: 100%;
+  padding: 0 !important; /* Remove padding do card para a tabela encostar na borda */
+  overflow: hidden; /* Garante que nada saia do card */
+  display: flex;
+  flex-direction: column;
+}
+
+/* 2. Área do Título (Com espaçamento restaurado) */
+.card-header-area {
+  padding: 24px 24px 0 24px;
+}
+
+.card-header-area h1 {
+  margin-bottom: 16px;
+  font-size: 1.8rem;
+}
+
+/* 3. Tabela 100% de Largura */
+.table-container {
+  width: 100%;
+  overflow-x: auto; /* Permite scroll lateral em telas pequenas */
+}
+
+table {
+  width: 100%;
+}
+
+/* Ajuste das colunas para não ficarem coladas */
+th.mat-header-cell, td.mat-cell {
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+
+/* Ações (Ícones de Editar/Deletar) */
+.action-cell {
+  white-space: nowrap; /* Não quebra linha */
+  width: 100px; /* Largura fixa para ações */
+}
+
+.action-btn {
+  margin-right: 12px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.action-btn:hover {
+  transform: scale(1.2);
+}
+
+.action-btn.edit mat-icon { color: var(--gold-primary); }
+.action-btn.delete mat-icon { color: #ff4444; }
+
+
+/* 4. Paginador (Texto Branco) */
+mat-paginator {
+  background: transparent !important;
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+  color: #ffffff !important; /* Texto branco forçado */
+}
+
+/* Força os labels internos do paginator a serem brancos */
+::ng-deep .mat-paginator-page-size-label,
+::ng-deep .mat-paginator-range-label,
+::ng-deep .mat-select-value-text {
+  color: #ffffff !important;
+}
+
+
+/* 5. Botão Adicionar (+) - Ícone Preto */
+.fab-container {
+  padding: 16px 24px 24px 24px; /* Espaço ao redor do botão */
+}
+
+.btn-create {
+  background: var(--gold-gradient) !important;
+}
+
+/* A MÁGICA: Transforma o ícone do botão (+) em PRETO */
+.btn-create mat-icon {
+  color: #000000 !important;
+  font-weight: 900;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .card-header-area { padding: 16px 16px 0 16px; }
+  th.mat-header-cell, td.mat-cell { padding: 0 12px !important; }
+}

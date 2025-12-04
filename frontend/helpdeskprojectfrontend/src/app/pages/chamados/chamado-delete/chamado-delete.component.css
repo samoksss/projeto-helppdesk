@@ -1,0 +1,101 @@
+.container {
+  width: 80%;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.titulo {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #f44336; /* Vermelho para indicar perigo/delete */
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.status-prioridade, .selecao-pessoas {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.half-width {
+  width: 48%;
+}
+
+.textarea {
+  min-height: 100px;
+  resize: vertical;
+  color: #333 !important;
+}
+
+.info-box {
+  width: 48%;
+  padding: 15px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.label { font-size: 0.8rem; opacity: 0.8; }
+.valor { font-size: 1.2rem; }
+
+/* Cores Status */
+.status-0 { background-color: #4caf50; }
+.status-1 { background-color: #2196f3; }
+.status-2 { background-color: #607d8b; }
+
+/* Cores Prioridade */
+.prioridade-0 { background-color: #4caf50; }
+.prioridade-1 { background-color: #ff9800; }
+.prioridade-2 { background-color: #f44336; }
+
+.datas-info {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    display: flex;
+    gap: 30px;
+    color: #555;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+button {
+  width: 48%;
+  padding: 10px;
+}
+
+@media(max-width: 700px) {
+  .status-prioridade, .selecao-pessoas {
+    flex-direction: column;
+  }
+  
+  .half-width, .info-box {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  .container {
+    width: 95%;
+    padding: 1rem;
+  }
+}

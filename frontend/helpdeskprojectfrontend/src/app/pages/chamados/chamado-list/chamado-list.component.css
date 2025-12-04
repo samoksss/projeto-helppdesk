@@ -1,0 +1,134 @@
+/* 1. Ajuste do Card */
+.list-card {
+  width: 100%;
+  padding: 0 !important;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 2. Header Flexbox (Título na esquerda, Botão na direita) */
+.card-header-area {
+  padding: 24px 24px 0 24px;
+  display: flex;
+  justify-content: space-between; /* Separa os itens */
+  align-items: center; /* Alinha verticalmente */
+  margin-bottom: 16px;
+}
+
+.card-header-area h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+/* 3. Botão "Novo Chamado" */
+.btn-novo {
+  background: var(--gold-gradient) !important;
+  color: #000000 !important;
+  font-weight: 700;
+  border-radius: 8px;
+  padding: 0 20px;
+  height: 42px;
+}
+
+.btn-novo mat-icon {
+  margin-right: 8px;
+}
+
+/* 4. Tabela */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table { width: 100%; }
+
+th.mat-header-cell, td.mat-cell {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+
+/* 5. Ações */
+.action-cell { white-space: nowrap; width: 120px; }
+
+.action-btn {
+  margin-right: 10px;
+  text-decoration: none;
+  display: inline-flex;
+  transition: transform 0.2s;
+}
+.action-btn:hover { transform: scale(1.2); }
+
+.edit mat-icon { color: var(--gold-primary); }
+.view mat-icon { color: #2196f3; } /* Azul para visualização */
+.delete mat-icon { color: #ff4444; }
+
+/* 6. Paginador */
+mat-paginator {
+  background: transparent !important;
+  border-top: 1px solid rgba(212, 175, 55, 0.15);
+  color: #ffffff !important;
+}
+::ng-deep .mat-paginator-page-size-label,
+::ng-deep .mat-paginator-range-label,
+::ng-deep .mat-select-value-text {
+  color: #ffffff !important;
+}
+
+/* =========================================
+   BADGES (Etiquetas de Status/Prioridade)
+   ========================================= */
+.badge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid transparent;
+}
+
+/* Cores de PRIORIDADE (Ajuste conforme seus códigos 0, 1, 2) */
+.prioridade-0 { /* BAIXA - Verde Neon */
+  background: rgba(0, 200, 81, 0.15);
+  color: #00e676;
+  border-color: rgba(0, 200, 81, 0.3);
+}
+.prioridade-1 { /* MÉDIA - Amarelo/Laranja */
+  background: rgba(255, 187, 51, 0.15);
+  color: #ffbb33;
+  border-color: rgba(255, 187, 51, 0.3);
+}
+.prioridade-2 { /* ALTA - Vermelho */
+  background: rgba(255, 68, 68, 0.15);
+  color: #ff4444;
+  border-color: rgba(255, 68, 68, 0.3);
+}
+
+/* Cores de STATUS (Ajuste conforme seus códigos 0, 1, 2) */
+.status-0 { /* ABERTO - Azul Claro */
+  background: rgba(51, 181, 229, 0.15);
+  color: #33b5e5;
+  border-color: rgba(51, 181, 229, 0.3);
+}
+.status-1 { /* ANDAMENTO - Roxo/Indigo */
+  background: rgba(156, 39, 176, 0.15);
+  color: #e040fb;
+  border-color: rgba(156, 39, 176, 0.3);
+}
+.status-2 { /* ENCERRADO - Cinza/Verde Suave */
+  background: rgba(0, 200, 81, 0.1);
+  color: #b2dfdb;
+  border-color: rgba(0, 200, 81, 0.2);
+  text-decoration: line-through; /* Opcional: risca tickets fechados */
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .card-header-area { 
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 16px;
+  }
+  .btn-novo { width: 100%; }
+}

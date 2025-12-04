@@ -1,0 +1,101 @@
+/* 1. Layout Centralizado */
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+  min-height: 80vh;
+}
+
+/* 2. Card do Formulário */
+.form-card {
+  width: 100%;
+  max-width: 600px; /* Um pouco mais estreito que o de chamados, pois tem menos campos */
+  background: #141414;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  border-radius: 16px;
+  padding: 32px 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* 3. Cabeçalho */
+.form-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.form-header h1 {
+  color: var(--gold-primary);
+  font-size: 2rem;
+  margin-bottom: 8px;
+  text-transform: none;
+}
+
+.form-header p {
+  color: #888;
+  font-size: 0.95rem;
+}
+
+/* 4. Inputs */
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Espaço um pouco maior entre os campos simples */
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* Ícones dentro do Input */
+.mat-icon {
+  color: var(--gold-primary); /* Ícones dourados */
+}
+
+/* 5. Botões de Ação */
+.button-group {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+/* Botão SALVAR */
+.btn-save {
+  flex: 1;
+  background: var(--gold-gradient) !important;
+  color: #000000 !important;
+  font-weight: 700;
+  height: 48px;
+  font-size: 1rem;
+}
+
+.btn-save mat-icon {
+  color: #000000 !important;
+  margin-right: 8px;
+}
+
+/* Botão CANCELAR */
+.btn-cancel {
+  flex: 1;
+  background: linear-gradient(135deg, #8B0000 0%, #500000 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid #ff4444;
+  height: 48px;
+  font-size: 1rem;
+}
+
+.btn-cancel mat-icon {
+  color: #ffffff !important;
+  margin-right: 8px;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .form-card {
+    padding: 24px 16px;
+  }
+  
+  .button-group {
+    flex-direction: column-reverse;
+  }
+}

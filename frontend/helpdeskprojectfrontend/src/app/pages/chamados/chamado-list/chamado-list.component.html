@@ -1,0 +1,83 @@
+<div class="container app-card list-card">
+
+  <div class="card-header-area">
+    <h1>Listando Chamados</h1>
+    
+    <button routerLink="create" mat-raised-button color="primary" class="btn-novo">
+      <mat-icon>add</mat-icon> NOVO CHAMADO
+    </button>
+  </div>
+
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="titulo">
+        <th mat-header-cell *matHeaderCellDef> Título </th>
+        <td mat-cell *matCellDef="let element"> {{element.titulo}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cliente">
+        <th mat-header-cell *matHeaderCellDef> Cliente </th>
+        <td mat-cell *matCellDef="let element"> {{element.nomeCliente}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="tecnico">
+        <th mat-header-cell *matHeaderCellDef> Técnico </th>
+        <td mat-cell *matCellDef="let element"> {{element.nomeTecnico}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="dataAbertura">
+        <th mat-header-cell *matHeaderCellDef> Data Abertura </th>
+        <td mat-cell *matCellDef="let element"> {{element.dataAbertura}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="prioridade">
+        <th mat-header-cell *matHeaderCellDef> Prioridade </th>
+        <td mat-cell *matCellDef="let element"> 
+          <span class="badge prioridade-{{element.prioridade}}">
+            {{ retornaPrioridade(element.prioridade) }}
+          </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element"> 
+          <span class="badge status-{{element.status}}">
+            {{ retornaStatus(element.status) }}
+          </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acoes">
+        <th mat-header-cell *matHeaderCellDef> Ações </th>
+        <td mat-cell *matCellDef="let element" class="action-cell">
+          <a routerLink="update/{{element.id}}" class="action-btn edit" matTooltip="Editar">
+            <mat-icon>edit</mat-icon>
+          </a>
+          <a routerLink="read/{{element.id}}" class="action-btn view" matTooltip="Ver Detalhes">
+            <mat-icon>visibility</mat-icon>
+          </a>
+          <a routerLink="delete/{{element.id}}" class="action-btn delete" matTooltip="Excluir">
+            <mat-icon>delete</mat-icon>
+          </a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="8">Nenhum chamado encontrado.</td>
+      </tr>
+    </table>
+  </div>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+</div>

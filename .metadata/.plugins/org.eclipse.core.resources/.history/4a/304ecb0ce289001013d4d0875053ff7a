@@ -1,0 +1,65 @@
+package com.turmaa.helpdesk.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.turmaa.helpdesk.domain.Chamado;
+import com.turmaa.helpdesk.domain.Cliente;
+import com.turmaa.helpdesk.domain.Tecnico;
+import com.turmaa.helpdesk.domain.dtos.ChamadoDTO;
+import com.turmaa.helpdesk.repositories.ChamadoRepository;
+import com.turmaa.helpdesk.service.exceptions.ObjectNotFoundException;
+
+@Service
+public class ChamadoService {
+
+    @Autowired
+    private ChamadoRepository chamadoRepository;
+    @Autowired
+    private TecnicoService tecnicoService;
+    @Autowired
+    private ClienteService clienteService;
+
+    public Chamado findById(Integer id) {
+        Optional<Chamado> obj = chamadoRepository.findById(id);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! ID: " + id));
+    }
+
+    // NOVO MÉTODO: Retorna todos os chamados
+    public List<Chamado> findAll() {
+        return chamadoRepository.findAll();
+    }
+
+    // NOVO MÉTODO: Cria um novo chamado
+    public Chamado create(ChamadoDTO objDTO) {
+        // Garante que o ID é nulo para que o JPA entenda que é uma nova criação
+        objDTO.setId(null);
+        
+        // Converte o DTO para a entidade, e valida se o técnico e o cliente existem
+        Chamado newObj = newChamado(objDTO);
+        
+        return chamadoRepository.save(newObj);
+    }
+    
+    // NOVO MÉTODO AUXILIAR: Converte DTO em entidade e valida as associações
+    private Chamado newChamado(ChamadoDTO objDTO) {
+        Tecnico tecnico = tecnicoService.findById(objDTO.getTecnicoId());
+        Cliente cliente = clienteService.findById(objDTO.getClienteId());
+        
+        Chamado chamado = new Chamado();
+        if(objDTO.getId() != null) {
+            chamado.setId(objDTO.getId());
+        }
+        chamado.setTecnico(tecnico);
+        chamado.setCliente(cliente);
+        chamado.setPrioridade(objDTO.getPrioridade());
+        chamado.setStatus(objDTO.getStatus());
+        chamado.setTitulo(objDTO.getTitulo());
+        chamado.setObservacoes(objDTO.getObservacoes());
+        
+        return chamado;
+    }
+}

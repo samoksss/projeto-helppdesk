@@ -1,0 +1,105 @@
+/* Container Principal */
+.home-container {
+  padding: 2rem 3rem; /* Mais espaçamento nas laterais */
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 1600px; /* Evita que estique demais em monitores ultrawide */
+  margin: 0 auto;
+}
+
+/* Cabeçalho */
+.header-section {
+  margin-bottom: 3rem;
+}
+
+.page-title {
+  /* A cor já vem do global, mas reforçamos aqui se precisar */
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.page-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-medium);
+  font-weight: 300;
+}
+
+/* Grid de Cards (A solução para distribuição) */
+.cards-grid {
+  display: grid;
+  /* Cria 3 colunas iguais. Se a tela for pequena, ajustaremos no media query */
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 32px; /* Espaço generoso entre os cards */
+  width: 100%;
+}
+
+/* Estilo Individual dos Cards */
+.dashboard-card {
+  position: relative;
+  height: 180px; /* Altura fixa para todos ficarem iguais */
+  padding: 24px 32px !important;
+  overflow: hidden; /* Para cortar o ícone gigante */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Borda lateral colorida para identificar status */
+  border-left: 6px solid transparent !important; 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.6) !important;
+}
+
+/* Cores específicas por status (Borda Lateral) */
+.status-open { border-left-color: #ff4444 !important; }        /* Vermelho/Laranja */
+.status-progress { border-left-color: #2196f3 !important; }    /* Azul */
+.status-closed { border-left-color: #00c851 !important; }      /* Verde */
+
+/* Texto e Números */
+.card-label {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-medium);
+  margin-bottom: 10px;
+  z-index: 2; /* Ficar acima do ícone */
+  position: relative;
+}
+
+.card-value {
+  font-size: 4.5rem; /* Número GIGANTE */
+  font-weight: 700;
+  color: var(--gold-primary);
+  line-height: 1;
+  z-index: 2;
+  position: relative;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+/* Ícone "Marca D'água" */
+.card-watermark {
+  position: absolute;
+  right: -20px;
+  bottom: -20px;
+  font-size: 10rem !important; /* Ícone Gigante */
+  width: 10rem;
+  height: 10rem;
+  opacity: 0.05; /* Muito sutil, quase invisível */
+  color: var(--text-high);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+  .cards-grid {
+    grid-template-columns: 1fr; /* Um card por linha em telas menores */
+    gap: 20px;
+  }
+  
+  .home-container {
+    padding: 1.5rem;
+  }
+}

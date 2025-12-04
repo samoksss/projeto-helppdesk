@@ -1,0 +1,62 @@
+<div class="container mat-elevation-z8">
+  <h1 class="titulo">Detalhes do Chamado</h1>
+
+  <div class="form">
+    
+    <!-- Título -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Título do Chamado</mat-label>
+      <input matInput [value]="chamado.titulo" disabled>
+    </mat-form-field>
+
+    <div class="status-prioridade">
+      <!-- Status (Exibido como texto com cor) -->
+      <div class="info-box status-{{chamado.status}}">
+        <span class="label">STATUS:</span>
+        <!-- CORREÇÃO AQUI: returnsStatus -> retornaStatus -->
+        <span class="valor">{{ retornaStatus(chamado.status) }}</span>
+      </div>
+
+      <!-- Prioridade (Exibido como texto com cor) -->
+      <div class="info-box prioridade-{{chamado.prioridade}}">
+        <span class="label">PRIORIDADE:</span>
+        <!-- CORREÇÃO AQUI: returnsPrioridade -> retornaPrioridade -->
+        <span class="valor">{{ retornaPrioridade(chamado.prioridade) }}</span>
+      </div>
+    </div>
+
+    <div class="selecao-pessoas">
+      <!-- Técnico -->
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Técnico Responsável</mat-label>
+        <input matInput [value]="chamado.nomeTecnico" disabled>
+      </mat-form-field>
+
+      <!-- Cliente -->
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Cliente</mat-label>
+        <input matInput [value]="chamado.nomeCliente" disabled>
+      </mat-form-field>
+    </div>
+
+    <!-- Observações -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Observações</mat-label>
+      <textarea matInput [value]="chamado.observacoes" class="textarea" disabled></textarea>
+    </mat-form-field>
+    
+    <!-- Datas -->
+    <div class="datas-info">
+        <p><strong>Aberto em:</strong> {{ chamado.dataAbertura }}</p>
+        <p *ngIf="chamado.dataFechamento"><strong>Encerrado em:</strong> {{ chamado.dataFechamento }}</p>
+    </div>
+
+    <!-- Botão Voltar -->
+    <div class="button-group">
+      <button routerLink="/chamados" mat-raised-button color="primary">
+        <mat-icon>arrow_back</mat-icon> Voltar
+      </button>
+    </div>
+
+  </div>
+</div>

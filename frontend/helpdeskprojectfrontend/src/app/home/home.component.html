@@ -1,0 +1,36 @@
+<div class="home-container">
+  
+  <div class="header-section">
+    <h1 class="page-title">Dashboard Helpdesk</h1>
+    <p class="page-subtitle">Visão geral do sistema de chamados</p>
+  </div>
+
+  <div class="cards-grid">
+    
+    <mat-card class="dashboard-card status-open">
+      <div class="card-content">
+        <div class="card-label">Chamados Abertos</div>
+        <div class="card-value">{{ abertos }}</div>
+      </div>
+      <mat-icon class="card-watermark">error_outline</mat-icon>
+    </mat-card>
+
+    <mat-card class="dashboard-card status-progress">
+      <div class="card-content">
+        <div class="card-label">Em Andamento</div>
+        <div class="card-value">{{ andamento }}</div>
+      </div>
+      <mat-icon class="card-watermark">schedule</mat-icon>
+    </mat-card>
+
+    <mat-card class="dashboard-card status-closed">
+      <div class="card-content">
+        <div class="card-label">Encerrados</div>
+        <div class="card-value">{{ encerrados }}</div>
+      </div>
+      <mat-icon class="card-watermark">check_circle</mat-icon>
+    </mat-card>
+
+  </div>
+
+  </div>

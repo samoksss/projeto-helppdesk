@@ -1,0 +1,48 @@
+package com.turmaa.helpdesk.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.turmaa.helpdesk.domain.Cliente;
+import com.turmaa.helpdesk.domain.dtos.ClienteDTO;
+import com.turmaa.helpdesk.repositories.ClienteRepository;
+import com.turmaa.helpdesk.service.exceptions.DataIntegrityViolationException;
+import com.turmaa.helpdesk.service.exceptions.ObjectNotFoundException;
+
+@Service
+public class ClienteService {
+
+    @Autowired
+    private ClienteRepository repository;
+
+    public Cliente findById(Integer id) {
+        Optional<Cliente> obj = repository.findById(id);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! id: " + id));
+    }
+
+    public List<Cliente> findAll() {
+        return repository.findAll();
+    }
+
+    // NOVO: Cria um novo cliente
+    public Cliente create(ClienteDTO objDTO) {
+        // Zera o ID do DTO para garantir que o Spring entenda que é uma nova criação
+        objDTO.setId(null);
+        // Valida se o CPF já existe
+        validaCpf(objDTO);
+        // Cria a entidade a partir do DTO e salva no banco
+        return repository.save(new Cliente(objDTO));
+    }
+
+    // NOVO: Método de validação de CPF
+    private void validaCpf(ClienteDTO objDTO) {
+        Optional<Cliente> obj = repository.findByCpf(objDTO.getCpf());
+        // Se encontrar um cliente com o mesmo CPF
+        if (obj.isPresent()) {
+            throw new DataIntegrityViolationException("CPF já cadastrado no sistema!");
+        }
+    }
+}

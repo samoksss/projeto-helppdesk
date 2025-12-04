@@ -1,0 +1,5 @@
+package com.turmaa.helpdesk.exceptions;
+
+public class StandardError {
+
+}

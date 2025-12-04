@@ -1,0 +1,5 @@
+package com.turmaa.helpdesk.service.exceptions;
+
+public class DataIntegrityViolationException {
+
+}

@@ -1,0 +1,5 @@
+package com.turmaa.helpdesk.repositories;
+
+public interface PessoaRepository {
+
+}

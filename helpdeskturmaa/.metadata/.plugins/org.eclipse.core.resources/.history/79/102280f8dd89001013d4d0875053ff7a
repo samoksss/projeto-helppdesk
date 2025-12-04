@@ -1,0 +1,35 @@
+package com.turmaa.helpdesk.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.turmaa.helpdesk.domain.Cliente;
+import com.turmaa.helpdesk.domain.dtos.ClienteDTO;
+import com.turmaa.helpdesk.repositories.ClienteRepository;
+import com.turmaa.helpdesk.service.exceptions.ObjectNotFoundException;
+
+@Service
+public class ClienteService {
+
+    @Autowired
+    private ClienteRepository repository;
+
+    public Cliente findById(Integer id) {
+        Optional<Cliente> obj = repository.findById(id);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! id: " + id));
+    }
+
+    // NOVO: Retorna todos os clientes
+    public List<Cliente> findAll() {
+        return repository.findAll();
+    }
+
+    // NOVO: Cria um novo cliente
+    public Cliente create(ClienteDTO objDTO) {
+        // A lógica de validação será adicionada em uma próxima etapa
+        return new Cliente(objDTO);
+    }
+}

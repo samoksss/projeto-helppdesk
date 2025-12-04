@@ -1,0 +1,116 @@
+/* 1. Layout Centralizado */
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Alinha no topo com margem */
+  padding: 40px 20px;
+  min-height: 80vh;
+}
+
+/* 2. Card do Formulário (Estilo Dark Premium) */
+.form-card {
+  width: 100%;
+  max-width: 800px; /* Largura máxima ideal para formulários */
+  background: #141414; /* Fundo Sólido Escuro */
+  border: 1px solid rgba(212, 175, 55, 0.1);
+  border-radius: 16px;
+  padding: 32px 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* 3. Cabeçalho */
+.form-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.form-header h1 {
+  color: var(--gold-primary);
+  font-size: 2rem;
+  margin-bottom: 8px;
+  text-transform: none; /* Mantém maiúsculas/minúsculas normais */
+}
+
+.form-header p {
+  color: #888;
+  font-size: 0.95rem;
+}
+
+/* 4. Grid e Layout dos Inputs */
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Espaço vertical entre linhas */
+}
+
+.flex-row {
+  display: flex;
+  gap: 20px; /* Espaço horizontal entre inputs */
+}
+
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  flex: 1; /* Ocupa 50% cada */
+}
+
+/* Estilo do Textarea */
+.textarea-custom {
+  min-height: 100px;
+  line-height: 1.5;
+}
+
+/* 5. Botões de Ação (Personalizados) */
+.button-group {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+/* Botão SALVAR (Dourado com Texto Preto) */
+.btn-save {
+  flex: 1;
+  background: var(--gold-gradient) !important;
+  color: #000000 !important;
+  font-weight: 700;
+  height: 48px;
+  font-size: 1rem;
+}
+
+.btn-save mat-icon {
+  color: #000000 !important;
+  margin-right: 8px;
+}
+
+/* Botão CANCELAR (Vermelho Escuro com Texto Branco) */
+.btn-cancel {
+  flex: 1;
+  background: linear-gradient(135deg, #8B0000 0%, #500000 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid #ff4444;
+  height: 48px;
+  font-size: 1rem;
+}
+
+.btn-cancel mat-icon {
+  color: #ffffff !important;
+  margin-right: 8px;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .flex-row {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .form-card {
+    padding: 24px 16px;
+  }
+  
+  .button-group {
+    flex-direction: column-reverse; /* Cancelar em baixo no mobile */
+  }
+}

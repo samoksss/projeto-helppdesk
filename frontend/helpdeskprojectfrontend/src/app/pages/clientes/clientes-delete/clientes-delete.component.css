@@ -1,0 +1,102 @@
+/* 1. Layout Centralizado (Padrão Global) */
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+  min-height: 80vh;
+}
+
+/* 2. Card */
+.form-card {
+  width: 100%;
+  max-width: 500px; /* Um pouco menor para telas de confirmação */
+  background: #141414;
+  border: 1px solid rgba(255, 68, 68, 0.3); /* Borda avermelhada sutil para indicar perigo */
+  border-radius: 16px;
+  padding: 32px 40px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* 3. Cabeçalho */
+.form-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.form-header h1 {
+  color: #ff4444; /* Título em Vermelho para alertar */
+  font-size: 2rem;
+  margin-bottom: 8px;
+  text-transform: none;
+}
+
+.warning-text {
+  color: #B0B0B0;
+  font-size: 0.95rem;
+}
+
+/* 4. Inputs & Conteúdo */
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* ESTILO DOS INPUTS DESABILITADOS (Correção Crítica) */
+::ng-deep .mat-form-field-disabled .mat-input-element {
+  color: #ffffff !important; /* Texto branco */
+}
+
+::ng-deep .mat-form-field-disabled .mat-form-field-label {
+  color: #888888 !important; /* Label cinza */
+}
+
+::ng-deep .mat-form-field-disabled .mat-form-field-outline {
+  color: rgba(255, 255, 255, 0.1) !important; /* Borda visível mas discreta */
+}
+
+::ng-deep .mat-form-field-disabled .mat-icon {
+  color: #666 !important; /* Ícone apagado */
+}
+
+
+/* 5. Botões */
+.button-group {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+/* Botão CANCELAR (Seguro - Dourado) */
+.btn-cancel-safe {
+  flex: 1;
+  background: var(--gold-gradient) !important;
+  color: #000 !important;
+  font-weight: 700;
+  height: 48px;
+}
+.btn-cancel-safe mat-icon { color: #000 !important; margin-right: 8px; }
+
+/* Botão DELETAR (Perigo - Vermelho) */
+.btn-delete-danger {
+  flex: 1;
+  background: linear-gradient(135deg, #b71c1c 0%, #7f0000 100%) !important;
+  color: #fff !important;
+  font-weight: 700;
+  height: 48px;
+  border: 1px solid #ff4444;
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.2);
+}
+.btn-delete-danger mat-icon { color: #fff !important; margin-right: 8px; }
+
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .form-card { padding: 24px 16px; }
+  .button-group { flex-direction: column-reverse; }
+}

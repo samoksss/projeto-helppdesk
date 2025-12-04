@@ -1,0 +1,80 @@
+<div class="container mat-elevation-z8">
+  <h1 class="titulo">Atualizar Chamado</h1>
+
+  <form [formGroup]="form" class="form">
+    
+    <!-- Título -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Título do Chamado</mat-label>
+      <input matInput formControlName="titulo" required>
+    </mat-form-field>
+
+    <div class="status-prioridade">
+      <!-- Status -->
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status" required>
+          <mat-option value="0">ABERTO</mat-option>
+          <mat-option value="1">EM ANDAMENTO</mat-option>
+          <mat-option value="2">ENCERRADO</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Prioridade -->
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Prioridade</mat-label>
+        <mat-select formControlName="prioridade" required>
+          <mat-option value="0">BAIXA</mat-option>
+          <mat-option value="1">MÉDIA</mat-option>
+          <mat-option value="2">ALTA</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="selecao-pessoas">
+      <!-- Select de Técnico -->
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Técnico Responsável</mat-label>
+        <mat-select formControlName="tecnico" required>
+          <mat-option *ngFor="let tec of tecnicos" [value]="tec.id">
+            {{ tec.nome }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Select de Cliente -->
+      <mat-form-field appearance="outline" class="half-width">
+        <mat-label>Cliente</mat-label>
+        <mat-select formControlName="cliente" required>
+          <mat-option *ngFor="let cli of clientes" [value]="cli.id">
+            {{ cli.nome }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <!-- Observações -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Observações / Descrição do Problema</mat-label>
+      <textarea matInput formControlName="observacoes" class="textarea" required></textarea>
+    </mat-form-field>
+    
+    <!-- Informações de Data (Apenas Leitura - não estão no formGroup para edição) -->
+    <!-- Se quiser exibir, precisaria adicionar ao form ou usar interpolação direta se tiver acesso ao objeto 'chamado' -->
+    <div *ngIf="chamado.dataAbertura" class="datas-info">
+        <p><strong>Aberto em:</strong> {{ chamado.dataAbertura }}</p>
+        <p *ngIf="chamado.dataFechamento"><strong>Fechado em:</strong> {{ chamado.dataFechamento }}</p>
+    </div>
+
+    <!-- Botões -->
+    <div class="button-group">
+      <button mat-raised-button color="primary" (click)="update()" [disabled]="form.invalid">
+        <mat-icon>save</mat-icon> Salvar Alterações
+      </button>
+      <button mat-raised-button color="warn" (click)="cancelar()">
+        <mat-icon>cancel</mat-icon> Cancelar
+      </button>
+    </div>
+
+  </form>
+</div>

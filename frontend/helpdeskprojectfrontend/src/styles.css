@@ -1,0 +1,250 @@
+/* ==========================================================================
+   LUXURY DARK THEME - MASTER STYLESHEET
+   Project: Help Desk Premium
+   Theme: Midnight Gold (Phase 1 Refinements Applied)
+   ========================================================================== */
+
+/* 1. DESIGN TOKENS (VARIÁVEIS GLOBAIS) */
+:root {
+  /* Paleta de Cores Absoluta */
+  --bg-deep: #000000;         /* Preto Profundo (Background Global) */
+  --bg-surface: #0a0a0a;      /* Preto Suave (Sidebar/Navbar) */
+  --bg-elevated: #141414;     /* Cards sólidos */
+  
+  /* Paleta Dourada (Gold) */
+  --gold-primary: #D4AF37;    /* Ouro Clássico */
+  --gold-hover: #F4C430;      /* Ouro Brilhante (Hover) */
+  --gold-muted: #8a7326;      /* Ouro Escuro (Bordas inativas) */
+  
+  /* Textos */
+  --text-high: #F5F5F5;       /* Branco quase puro */
+  --text-medium: #B0B0B0;     /* Cinza Leitura */
+  --text-muted: #666666;      /* Cinza Desabilitado */
+  
+  /* Efeitos Especiais */
+  --glass-bg: rgba(20, 20, 20, 0.65);
+  --glass-border: 1px solid rgba(212, 175, 55, 0.15);
+  --glass-blur: blur(16px);
+  --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #AA8925 100%);
+  --shadow-premium: 0 10px 30px rgba(0, 0, 0, 0.8);
+}
+
+/* 2. GLOBAL RESET & TIPOGRAFIA */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--bg-deep) !important;
+  color: var(--text-medium);
+  overflow-x: hidden;
+}
+
+/* Títulos Dourados (Correção Global) */
+h1, h2, h3, h4, h5, h6, .mat-h1, .mat-h2, .page-title {
+  color: var(--gold-primary) !important;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Links */
+a { color: var(--gold-primary); text-decoration: none; transition: 0.3s; }
+a:hover { color: var(--gold-hover); text-shadow: 0 0 8px rgba(212, 175, 55, 0.4); }
+
+/* Scrollbar Personalizada */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold-muted); }
+
+/* ==========================================================================
+   3. ANGULAR MATERIAL OVERRIDES (LAYOUT & SIDEBAR)
+   ========================================================================== */
+
+/* Matar o Background Branco dos Containers */
+.mat-drawer-container, .mat-sidenav-content, .mat-sidenav {
+  background-color: var(--bg-deep) !important;
+  color: var(--text-medium);
+}
+
+/* SIDEBAR (Correção Fase 1: Letras e Espaçamento) */
+.mat-sidenav {
+  background-color: var(--bg-surface) !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
+  width: 260px;
+}
+
+.mat-nav-list .mat-list-item {
+  color: var(--gold-primary) !important; /* Letras Douradas */
+  font-weight: 400;
+  transition: background 0.3s ease;
+}
+
+.mat-nav-list .mat-list-item:hover {
+  background-color: rgba(212, 175, 55, 0.05);
+}
+
+/* Aumentar espaço entre Ícone e Texto na Sidebar */
+.mat-list-item .mat-icon {
+  margin-right: 24px !important; /* Espaçamento maior */
+  color: var(--gold-primary);
+}
+
+/* NAVBAR (Topo) */
+.mat-toolbar.mat-primary, .mat-toolbar {
+  background: var(--bg-surface) !important;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+  color: var(--gold-primary) !important;
+  box-shadow: none !important;
+}
+
+/* ==========================================================================
+   4. COMPONENTES PREMIUM (CARDS, TABELAS E PAGINATOR)
+   ========================================================================== */
+
+/* CARDS (Glassmorphism) */
+.mat-card, .app-card, .dashboard-card {
+  background: var(--glass-bg) !important;
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: var(--glass-border) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--shadow-premium) !important;
+  color: var(--text-high) !important;
+}
+
+/* TABELAS */
+table.mat-table { background: transparent !important; }
+
+.mat-header-cell {
+  color: var(--gold-primary) !important;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2) !important;
+}
+
+.mat-cell {
+  color: var(--text-medium) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+.mat-row:hover {
+  background-color: rgba(212, 175, 55, 0.05) !important;
+}
+
+/* PAGINATOR (Correção Fase 1: Visibilidade) */
+.mat-paginator {
+  background: transparent !important;
+  color: var(--text-high) !important; /* Texto Branco */
+}
+.mat-paginator-page-size-label,
+.mat-paginator-range-label,
+.mat-select-value {
+  color: var(--text-high) !important; /* Garante visibilidade */
+}
+.mat-select-arrow {
+  color: var(--gold-primary) !important;
+}
+.mat-form-field-underline {
+  background-color: var(--text-medium) !important;
+}
+
+/* ==========================================================================
+   5. BOTÕES & INTERATIVIDADE (Correção Fase 1: Cores de Ação)
+   ========================================================================== */
+
+/* Botões Primários (SALVAR/NOVO) - Gradiente Dourado */
+.mat-raised-button.mat-primary, 
+.mat-flat-button.mat-primary,
+.mat-fab.mat-primary, 
+.mat-mini-fab.mat-primary,
+button.btn-primary {
+  background: var(--gold-gradient) !important;
+  color: #000000 !important; /* Texto Preto */
+  font-weight: 700;
+  border: 1px solid #FFD700;
+}
+
+/* Garante que o ícone dentro do botão primário seja PRETO */
+.mat-raised-button.mat-primary .mat-icon,
+.mat-fab.mat-primary .mat-icon {
+  color: #000000 !important;
+}
+
+/* Botões de Perigo/Cancelar (WARN) - Vermelho */
+.mat-raised-button.mat-warn,
+.mat-flat-button.mat-warn {
+  background: linear-gradient(135deg, #8B0000 0%, #500000 100%) !important;
+  color: #ffffff !important; /* Texto Branco */
+  border: 1px solid #ff4444;
+}
+
+/* Garante que o ícone dentro do botão warn seja BRANCO */
+.mat-raised-button.mat-warn .mat-icon {
+  color: #ffffff !important;
+}
+
+/* Ícone de + (FAB) no Dashboard */
+.mat-fab.mat-primary {
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4) !important;
+}
+
+/* Ações na Tabela (Ícones soltos) */
+.table-actions .mat-icon-button { color: var(--text-medium); }
+.table-actions .mat-icon-button:hover { color: var(--gold-primary); }
+
+/* ==========================================================================
+   6. FORMULÁRIOS & INPUTS (Correção Fase 1: Checkboxes)
+   ========================================================================== */
+
+/* CHECKBOX (Correção: Borda Branca) */
+.mat-checkbox-frame {
+  border-color: rgba(255, 255, 255, 0.7) !important; /* Borda clara */
+}
+.mat-checkbox-checked .mat-checkbox-background {
+  background-color: var(--gold-primary) !important; /* Fundo Dourado quando marcado */
+}
+.mat-checkbox-checkmark-path {
+  stroke: #000000 !important; /* Check preto */
+}
+
+/* Inputs Gerais */
+.mat-input-element { color: var(--text-high) !important; caret-color: var(--gold-primary) !important; }
+.mat-form-field-label { color: var(--text-muted) !important; }
+.mat-form-field.mat-focused .mat-form-field-label { color: var(--gold-primary) !important; }
+
+.mat-form-field-appearance-outline .mat-form-field-outline { color: rgba(255, 255, 255, 0.2) !important; }
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick { color: var(--gold-primary) !important; }
+
+/* MODAL / DIALOGOS (Correção Fundo Branco) */
+.mat-dialog-container {
+  background: linear-gradient(145deg, #1a1a1a, #0d0d0d) !important;
+  border: 1px solid var(--gold-primary) !important;
+  border-radius: 16px !important;
+  color: var(--text-high) !important;
+}
+.mat-dialog-title { border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding-bottom: 15px; }
+
+/* ==========================================================================
+   7. PÁGINA DE LOGIN
+   ========================================================================== */
+.login-page-container {
+  background-image: url('assets/unicatolica.png');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-page-container::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.75); z-index: 0;
+}
+.login-card-wrapper {
+  position: relative; z-index: 1; width: 100%; max-width: 400px;
+}

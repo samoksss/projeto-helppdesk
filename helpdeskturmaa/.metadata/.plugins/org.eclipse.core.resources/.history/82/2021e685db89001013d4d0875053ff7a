@@ -1,0 +1,37 @@
+package com.turmaa.helpdesk.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.turmaa.helpdesk.domain.Tecnico;
+import com.turmaa.helpdesk.domain.dtos.TecnicoDTO;
+import com.turmaa.helpdesk.service.exceptions.ObjectNotFoundException;
+import com.turmaa.helpdesk.repositories.TecnicoRepository;
+
+@Service
+public class TecnicoService {
+
+    @Autowired
+    private TecnicoRepository repository;
+
+    public Tecnico findById(Integer id) {
+        Optional<Tecnico> obj = repository.findById(id);
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! id: " + id));
+    }
+
+    // NOVO MÉTODO: Retorna todos os técnicos
+    public List<Tecnico> findAll() {
+        return repository.findAll();
+    }
+
+    // NOVO MÉTODO: Cria um novo técnico
+    public Tecnico create(TecnicoDTO objDTO) {
+        // Você precisará de um método para criar a entidade a partir do DTO
+        // Vamos criar a lógica para a verificação de CPF já cadastrado aqui.
+        // Por enquanto, vamos retornar uma nova instância de Tecnico.
+        return new Tecnico();
+    }
+}

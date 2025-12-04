@@ -1,0 +1,20 @@
+    
+    .container {
+    width: 80%; /* ou o tamanho que preferir */
+    margin: auto;
+    padding: 20px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.checkbox-container {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 5px;
+}
+
+.button-group button {
+    margin-right: 10px;
+}

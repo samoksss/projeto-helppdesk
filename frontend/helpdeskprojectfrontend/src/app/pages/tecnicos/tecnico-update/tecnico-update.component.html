@@ -1,0 +1,53 @@
+<div class="container mat-elevation-z8">
+
+  <h1 class="titulo">Editar Técnico</h1>
+  <p class="subtitulo">Atualize os dados do técnico selecionado.</p>
+
+  <form [formGroup]="form" class="form">
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="nome">
+      <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>CPF</mat-label>
+      <input matInput formControlName="cpf" mask="000.000.000-00" placeholder="000.000.000-00" required>
+      <mat-icon matSuffix>pin</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email">
+      <mat-icon matSuffix>email</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nova Senha (deixe em branco para manter)</mat-label>
+      <input type="password" matInput formControlName="senha">
+      <mat-icon matSuffix>lock</mat-icon>
+    </mat-form-field>
+
+    <div class="checkbox-container">
+      <mat-checkbox formControlName="isAdmin" color="primary">
+        Conceder permissão de ADMINISTRADOR?
+      </mat-checkbox>
+    </div>
+    <br>
+
+    <div class="button-group">
+      <button mat-raised-button color="primary" (click)="update()" [disabled]="form.invalid">
+        <mat-icon>save</mat-icon>
+        Salvar Alterações
+      </button>
+
+      <button mat-raised-button color="warn" (click)="cancelar()">
+        <mat-icon>arrow_back</mat-icon>
+        Cancelar
+      </button>
+    </div>
+
+  </form>
+
+</div>

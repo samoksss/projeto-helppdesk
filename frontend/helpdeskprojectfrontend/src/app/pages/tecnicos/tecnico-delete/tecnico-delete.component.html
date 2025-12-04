@@ -1,0 +1,29 @@
+<div class="container">
+
+  <h2 class="titulo">Excluir Técnico</h2>
+  <p class="subtitulo">Tem certeza que deseja remover este técnico?</p>
+
+  <mat-card class="card">
+    <mat-card-content>
+
+      <p><strong>ID:</strong> {{ tecnico?.id }}</p>
+      <p><strong>Nome:</strong> {{ tecnico?.nome }}</p>
+      <p><strong>CPF:</strong> {{ tecnico?.cpf }}</p>
+      <p><strong>Email:</strong> {{ tecnico?.email }}</p>
+
+    </mat-card-content>
+  </mat-card>
+
+  <div class="buttons">
+    <button mat-raised-button color="warn" (click)="delete()">
+      <mat-icon>delete</mat-icon>
+      Excluir
+    </button>
+
+    <button mat-raised-button color="primary" (click)="cancelar()">
+      <mat-icon>close</mat-icon>
+      Cancelar
+    </button>
+  </div>
+
+</div>

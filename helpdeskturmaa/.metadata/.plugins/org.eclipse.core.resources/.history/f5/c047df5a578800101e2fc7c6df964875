@@ -1,0 +1,5 @@
+package com.wagner.helpdesk.resources;
+
+public class TecnicoResource {
+
+}

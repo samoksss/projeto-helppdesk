@@ -1,0 +1,51 @@
+/* Container principal centralizado (opcional, ajusta a largura do card) */
+.container {
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+}
+
+/* O Segredo: Força o formulário a ser uma COLUNA vertical */
+.form {
+  display: flex;
+  flex-direction: column; /* Um embaixo do outro */
+  width: 100%;
+}
+
+/* Garante que cada campo ocupe a largura disponível */
+.full-width {
+  width: 100%;
+}
+
+/* Título */
+.titulo {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+/* Subtítulo */
+.subtitulo {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #666;
+}
+
+/* Espaçamento para a caixa de seleção (Checkbox) */
+.checkbox-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+/* Botões */
+.button-group {
+  display: flex;
+  justify-content: space-between; /* Espalha os botões */
+  margin-top: 10px;
+}
+
+.button-group button {
+  width: 48%; /* Botões dividem o espaço */
+}
