@@ -84,7 +84,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     ReactiveFormsModule,
 
     // Configuração da Máscara (CPF/CNPJ etc)
-    NgxMaskModule.forRoot(), // <--- ADICIONEI AQUI
+    NgxMaskModule.forRoot(),
 
     // Angular Material Imports
     MatToolbarModule,
